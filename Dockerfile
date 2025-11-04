@@ -1,5 +1,6 @@
 # Build argument for base image selection
-ARG BASE_IMAGE=nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04
+# NOTE: Using devel (not runtime) because we build CUDA extensions (SageAttention, WanVideoWrapper) during image build
+ARG BASE_IMAGE=nvidia/cuda:12.6.3-cudnn-devel-ubuntu24.04
 
 # Stage 1: Base image with common dependencies
 FROM ${BASE_IMAGE} AS base
@@ -45,6 +46,10 @@ RUN apt-get update && apt-get install -y \
 # Clean up to reduce image size
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
+# Add a fake libcuda.so symlink for serverless environments (no GPU driver at build time)
+RUN mkdir -p /usr/lib/x86_64-linux-gnu && \
+    ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/lib/x86_64-linux-gnu/libcuda.so || true
+
 # Install uv (latest) using official installer and create isolated venv
 RUN wget -qO- https://astral.sh/uv/install.sh | sh \
     && ln -s /root/.local/bin/uv /usr/local/bin/uv \
@@ -53,6 +58,11 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh \
 
 # Use the virtual environment for all subsequent commands
 ENV PATH="/opt/venv/bin:${PATH}"
+
+# Set correct CUDA environment variables for Triton and PyTorch
+ENV CUDA_HOME=/usr/local/cuda
+ENV PATH="${CUDA_HOME}/bin:${PATH}"
+ENV LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/compat:${LD_LIBRARY_PATH}"
 
 # Install comfy-cli + dependencies needed by it to install ComfyUI
 RUN uv pip install comfy-cli pip setuptools wheel

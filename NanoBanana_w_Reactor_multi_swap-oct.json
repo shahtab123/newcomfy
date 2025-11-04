@@ -1,0 +1,1692 @@
+{
+  "id": "aea5184b-378f-4839-ac00-6b8ae6ee8d60",
+  "revision": 0,
+  "last_node_id": 40,
+  "last_link_id": 78,
+  "nodes": [
+    {
+      "id": 13,
+      "type": "PreviewImage",
+      "pos": [
+        8610,
+        1360
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 19
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 11,
+      "type": "SegsToCombinedMask",
+      "pos": [
+        7660,
+        1290
+      ],
+      "size": [
+        211.85116577148438,
+        26
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "segs",
+          "type": "SEGS",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "8.19.1",
+        "Node name for S&R": "SegsToCombinedMask",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 10,
+      "type": "BboxDetectorSEGS",
+      "pos": [
+        7200,
+        1350
+      ],
+      "size": [
+        400,
+        224
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 10
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 11
+        },
+        {
+          "name": "detailer_hook",
+          "shape": 7,
+          "type": "DETAILER_HOOK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SEGS",
+          "type": "SEGS",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "8.19.1",
+        "Node name for S&R": "BboxDetectorSEGS",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        0.5,
+        10,
+        1,
+        10,
+        "all"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "SegsToCombinedMask",
+      "pos": [
+        7600,
+        1970
+      ],
+      "size": [
+        211.85116577148438,
+        26
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "segs",
+          "type": "SEGS",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "8.19.1",
+        "Node name for S&R": "SegsToCombinedMask",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 14,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        8280,
+        1340
+      ],
+      "size": [
+        221.98202514648438,
+        46
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 18
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            19,
+            20,
+            67,
+            68
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "ImageUpscaleWithModel",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 9,
+      "type": "UltralyticsDetectorProvider",
+      "pos": [
+        6820,
+        1390
+      ],
+      "size": [
+        270,
+        78
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BBOX_DETECTOR",
+          "type": "BBOX_DETECTOR",
+          "links": [
+            10,
+            21
+          ]
+        },
+        {
+          "name": "SEGM_DETECTOR",
+          "type": "SEGM_DETECTOR",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-subpack",
+        "ver": "1.3.4",
+        "Node name for S&R": "UltralyticsDetectorProvider",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "bbox/face_yolov8n_v2.pt"
+      ]
+    },
+    {
+      "id": 32,
+      "type": "Save Image With Callback",
+      "pos": [
+        10387.1884765625,
+        1368.143310546875
+      ],
+      "size": [
+        418.98565673828125,
+        438.9926452636719
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 60
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "ComfyUI-Save-Image-Callback",
+        "ver": "2bdae593fb24f047a4f6e163dde5848426fec9f2",
+        "Node name for S&R": "Save Image With Callback",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "filename_prefix": true
+          }
+        }
+      },
+      "widgets_values": [
+        "ai_photo_booth"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "PreviewImage",
+      "pos": [
+        10599.0380859375,
+        2136.2294921875
+      ],
+      "size": [
+        500,
+        610
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 63
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 37,
+      "type": "ReActorFaceBoost",
+      "pos": [
+        9444.8369140625,
+        2257.017333984375
+      ],
+      "size": [
+        292.73046875,
+        178
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FACE_BOOST",
+          "type": "FACE_BOOST",
+          "links": [
+            62
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "comfyui-reactor-node",
+        "ver": "c8f585414f25f315076b6e953561088f0d01bf10",
+        "Node name for S&R": "ReActorFaceBoost",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        true,
+        "GFPGANv1.4.pth",
+        "Bicubic",
+        1,
+        0.5,
+        true
+      ]
+    },
+    {
+      "id": 36,
+      "type": "ReActorFaceSwap",
+      "pos": [
+        9450.103515625,
+        1848.0323486328125
+      ],
+      "size": [
+        285.287109375,
+        358
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_image",
+          "type": "IMAGE",
+          "link": 66
+        },
+        {
+          "name": "source_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 68
+        },
+        {
+          "name": "face_model",
+          "shape": 7,
+          "type": "FACE_MODEL",
+          "link": null
+        },
+        {
+          "name": "face_boost",
+          "shape": 7,
+          "type": "FACE_BOOST",
+          "link": 62
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SWAPPED_IMAGE",
+          "type": "IMAGE",
+          "links": [
+            63,
+            64
+          ]
+        },
+        {
+          "name": "FACE_MODEL",
+          "type": "FACE_MODEL",
+          "links": null
+        },
+        {
+          "name": "ORIGINAL_IMAGE",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "comfyui-reactor-node",
+        "ver": "c8f585414f25f315076b6e953561088f0d01bf10",
+        "Node name for S&R": "ReActorFaceSwap",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        true,
+        "inswapper_128.onnx",
+        "YOLOv5n",
+        "GFPGANv1.4.pth",
+        1,
+        0.5,
+        "no",
+        "no",
+        "2",
+        "2",
+        1
+      ]
+    },
+    {
+      "id": 31,
+      "type": "PreviewImage",
+      "pos": [
+        7560.0517578125,
+        2245.403076171875
+      ],
+      "size": [
+        592.9994506835938,
+        559.160888671875
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 69
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 18,
+      "type": "D2 Cut By Mask",
+      "pos": [
+        8250.0888671875,
+        2195.311767578125
+      ],
+      "size": [
+        270,
+        218
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 70
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "rect",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "d2-nodes-comfyui",
+        "ver": "23.0.0",
+        "Node name for S&R": "D2 Cut By Mask",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "mask",
+        "mask_size",
+        0,
+        0,
+        0,
+        false
+      ]
+    },
+    {
+      "id": 16,
+      "type": "BboxDetectorSEGS",
+      "pos": [
+        7490,
+        1650
+      ],
+      "size": [
+        400,
+        224
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 21
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 72
+        },
+        {
+          "name": "detailer_hook",
+          "shape": 7,
+          "type": "DETAILER_HOOK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SEGS",
+          "type": "SEGS",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "8.19.1",
+        "Node name for S&R": "BboxDetectorSEGS",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        0.5,
+        10,
+        1,
+        10,
+        "all"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        6490,
+        1910
+      ],
+      "size": [
+        274.080078125,
+        314
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            74
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "session-b1941be9-ccb5-40ab-8d45-c668ba51020c-1755510686740.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        6460,
+        2290
+      ],
+      "size": [
+        274.080078125,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            75
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "2-2.png",
+        "image"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "ReActorFaceBoost",
+      "pos": [
+        8627.158203125,
+        2253.592041015625
+      ],
+      "size": [
+        292.73046875,
+        178
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FACE_BOOST",
+          "type": "FACE_BOOST",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "comfyui-reactor-node",
+        "ver": "c8f585414f25f315076b6e953561088f0d01bf10",
+        "Node name for S&R": "ReActorFaceBoost",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        true,
+        "GFPGANv1.4.pth",
+        "Bicubic",
+        0.25000000000000006,
+        0.5,
+        true
+      ]
+    },
+    {
+      "id": 24,
+      "type": "LoadImage",
+      "pos": [
+        8782.1416015625,
+        953.6953735351562
+      ],
+      "size": [
+        274.080078125,
+        314.00006103515625
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            58
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            59
+          ]
+        }
+      ],
+      "title": "Image Overlay",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.49",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "image": true,
+            "upload": true
+          }
+        }
+      },
+      "widgets_values": [
+        "Monin-watermark-Recovered copy.png",
+        "image"
+      ]
+    },
+    {
+      "id": 33,
+      "type": "KimaraAIWatermarker",
+      "pos": [
+        9496.9873046875,
+        928.2686157226562
+      ],
+      "size": [
+        309.4556579589844,
+        314
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 64
+        },
+        {
+          "name": "logo_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 58
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 59
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "shape": 6,
+          "type": "IMAGE",
+          "links": [
+            60
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kimara-ai-advanced-watermarks",
+        "ver": "1.0.0",
+        "Node name for S&R": "KimaraAIWatermarker",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "move_watermark": true,
+            "move_watermark_step": true,
+            "watermark_text": true,
+            "font": true,
+            "font_size": true,
+            "logo_scale_percentage": true,
+            "x_padding": true,
+            "y_padding": true,
+            "rotation": true,
+            "opacity": true
+          }
+        }
+      },
+      "widgets_values": [
+        false,
+        10,
+        "",
+        "assets/fonts/DMSans-VariableFont_opsz,wght.ttf",
+        2,
+        100,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 12,
+      "type": "D2 Cut By Mask",
+      "pos": [
+        7930,
+        1400
+      ],
+      "size": [
+        270,
+        218
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 14
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            17
+          ]
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "rect",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "d2-nodes-comfyui",
+        "ver": "23.0.0",
+        "Node name for S&R": "D2 Cut By Mask",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "mask",
+        "mask_size",
+        40,
+        0,
+        0,
+        false
+      ]
+    },
+    {
+      "id": 15,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        7988.68310546875,
+        1000.3842163085938
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "UpscaleModelLoader",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "RealESRGAN_x2.pth"
+      ]
+    },
+    {
+      "id": 40,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        7978.05908203125,
+        1804.148193359375
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            76
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "UpscaleModelLoader",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "RealESRGAN_x2.pth"
+      ]
+    },
+    {
+      "id": 39,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        8061.9599609375,
+        1939.02490234375
+      ],
+      "size": [
+        221.98202514648438,
+        46
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 76
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 77
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            78
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "ImageUpscaleWithModel",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 35,
+      "type": "ReActorFaceBoost",
+      "pos": [
+        9063.736328125,
+        2267.33154296875
+      ],
+      "size": [
+        292.73046875,
+        178
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FACE_BOOST",
+          "type": "FACE_BOOST",
+          "links": [
+            61
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "comfyui-reactor-node",
+        "ver": "c8f585414f25f315076b6e953561088f0d01bf10",
+        "Node name for S&R": "ReActorFaceBoost",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        true,
+        "GFPGANv1.4.pth",
+        "Bicubic",
+        0.25000000000000006,
+        0.5,
+        true
+      ]
+    },
+    {
+      "id": 6,
+      "type": "ReActorFaceSwap",
+      "pos": [
+        8377.60546875,
+        1716.9443359375
+      ],
+      "size": [
+        285.287109375,
+        358
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_image",
+          "type": "IMAGE",
+          "link": 78
+        },
+        {
+          "name": "source_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 20
+        },
+        {
+          "name": "face_model",
+          "shape": 7,
+          "type": "FACE_MODEL",
+          "link": null
+        },
+        {
+          "name": "face_boost",
+          "shape": 7,
+          "type": "FACE_BOOST",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SWAPPED_IMAGE",
+          "type": "IMAGE",
+          "links": [
+            65
+          ]
+        },
+        {
+          "name": "FACE_MODEL",
+          "type": "FACE_MODEL",
+          "links": null
+        },
+        {
+          "name": "ORIGINAL_IMAGE",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "comfyui-reactor-node",
+        "ver": "c8f585414f25f315076b6e953561088f0d01bf10",
+        "Node name for S&R": "ReActorFaceSwap",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        true,
+        "inswapper_128.onnx",
+        "YOLOv5n",
+        "GFPGANv1.4.pth",
+        0.8800000000000001,
+        0.5,
+        "no",
+        "no",
+        "0",
+        "0",
+        1
+      ]
+    },
+    {
+      "id": 34,
+      "type": "ReActorFaceSwap",
+      "pos": [
+        9068.298828125,
+        1829.2091064453125
+      ],
+      "size": [
+        285.287109375,
+        358
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_image",
+          "type": "IMAGE",
+          "link": 65
+        },
+        {
+          "name": "source_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 67
+        },
+        {
+          "name": "face_model",
+          "shape": 7,
+          "type": "FACE_MODEL",
+          "link": null
+        },
+        {
+          "name": "face_boost",
+          "shape": 7,
+          "type": "FACE_BOOST",
+          "link": 61
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SWAPPED_IMAGE",
+          "type": "IMAGE",
+          "links": [
+            66
+          ]
+        },
+        {
+          "name": "FACE_MODEL",
+          "type": "FACE_MODEL",
+          "links": null
+        },
+        {
+          "name": "ORIGINAL_IMAGE",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "comfyui-reactor-node",
+        "ver": "c8f585414f25f315076b6e953561088f0d01bf10",
+        "Node name for S&R": "ReActorFaceSwap",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        true,
+        "inswapper_128.onnx",
+        "YOLOv5n",
+        "GFPGANv1.4.pth",
+        0.8800000000000001,
+        0.5,
+        "no",
+        "no",
+        "1",
+        "1",
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [
+        6480,
+        1510
+      ],
+      "size": [
+        274.080078125,
+        314
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11,
+            14,
+            73
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.44",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "original-51e5be55-e062-43e8-a0e5-48098422f786-2025-09-04.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 38,
+      "type": "Nano_Banana",
+      "pos": [
+        6934.5869140625,
+        1830.0714111328125
+      ],
+      "size": [
+        420.9840087890625,
+        599.4093627929688
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_to_edit",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 73
+        },
+        {
+          "name": "reference_image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 74
+        },
+        {
+          "name": "reference_image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 75
+        },
+        {
+          "name": "reference_image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "reference_image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "reference_image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            69,
+            70,
+            72,
+            77
+          ]
+        },
+        {
+          "name": "status",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "mikheys/comfyui-gemini-mikheys",
+        "ver": "6dbca92a3d0848fa8e80c2c690e6b46a684419d1",
+        "Node name for S&R": "Nano_Banana",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "prompt": true,
+            "model": true,
+            "api_key": true,
+            "proxy": true,
+            "operation": true,
+            "quality": true,
+            "aspect_ratio": true,
+            "character_consistency": true,
+            "temperature": true,
+            "seed": true
+          }
+        }
+      },
+      "widgets_values": [
+        "Use only the person and create: The scene is a cinematic, artistic portrait surrounded by vibrant flowers (red, orange, white, blue, and purple) with a dreamy, softly lit atmosphere. Mist and light beams flow in the background, creating depth and a surreal, painterly mood. The subject is standing confidently, well-lit, with natural elegance. Clothing should appear stylish, well-fitted, and refined, adapted naturally to the person’s gender. Keep the overall tone artistic, vibrant, and polished with a slightly ethereal look. Ensure the generated person appears slimmer and more fit than default while maintaining realism. Match the person face, pose and expression as much as possible.",
+        "gemini-2.5-flash-image-preview",
+        "",
+        "",
+        "None",
+        "high",
+        "4:5 ▯",
+        false,
+        -0.05,
+        135268063,
+        "randomize"
+      ]
+    }
+  ],
+  "links": [
+    [
+      9,
+      8,
+      0,
+      6,
+      3,
+      "FACE_BOOST"
+    ],
+    [
+      10,
+      9,
+      0,
+      10,
+      0,
+      "BBOX_DETECTOR"
+    ],
+    [
+      11,
+      2,
+      0,
+      10,
+      1,
+      "IMAGE"
+    ],
+    [
+      12,
+      10,
+      0,
+      11,
+      0,
+      "SEGS"
+    ],
+    [
+      13,
+      11,
+      0,
+      12,
+      1,
+      "MASK"
+    ],
+    [
+      14,
+      2,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      17,
+      12,
+      0,
+      14,
+      1,
+      "IMAGE"
+    ],
+    [
+      18,
+      15,
+      0,
+      14,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      19,
+      14,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      14,
+      0,
+      6,
+      1,
+      "IMAGE"
+    ],
+    [
+      21,
+      9,
+      0,
+      16,
+      0,
+      "BBOX_DETECTOR"
+    ],
+    [
+      24,
+      16,
+      0,
+      17,
+      0,
+      "SEGS"
+    ],
+    [
+      25,
+      17,
+      0,
+      18,
+      1,
+      "MASK"
+    ],
+    [
+      58,
+      24,
+      0,
+      33,
+      1,
+      "IMAGE"
+    ],
+    [
+      59,
+      24,
+      1,
+      33,
+      2,
+      "MASK"
+    ],
+    [
+      60,
+      33,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      61,
+      35,
+      0,
+      34,
+      3,
+      "FACE_BOOST"
+    ],
+    [
+      62,
+      37,
+      0,
+      36,
+      3,
+      "FACE_BOOST"
+    ],
+    [
+      63,
+      36,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      64,
+      36,
+      0,
+      33,
+      0,
+      "IMAGE"
+    ],
+    [
+      65,
+      6,
+      0,
+      34,
+      0,
+      "IMAGE"
+    ],
+    [
+      66,
+      34,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      67,
+      14,
+      0,
+      34,
+      1,
+      "IMAGE"
+    ],
+    [
+      68,
+      14,
+      0,
+      36,
+      1,
+      "IMAGE"
+    ],
+    [
+      69,
+      38,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      70,
+      38,
+      0,
+      18,
+      0,
+      "IMAGE"
+    ],
+    [
+      72,
+      38,
+      0,
+      16,
+      1,
+      "IMAGE"
+    ],
+    [
+      73,
+      2,
+      0,
+      38,
+      0,
+      "IMAGE"
+    ],
+    [
+      74,
+      3,
+      0,
+      38,
+      1,
+      "IMAGE"
+    ],
+    [
+      75,
+      4,
+      0,
+      38,
+      2,
+      "IMAGE"
+    ],
+    [
+      76,
+      40,
+      0,
+      39,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      77,
+      38,
+      0,
+      39,
+      1,
+      "IMAGE"
+    ],
+    [
+      78,
+      39,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "ds": {
+      "scale": 0.7627768444385494,
+      "offset": [
+        -5851.515070714333,
+        -1311.763999877392
+      ]
+    },
+    "frontendVersion": "1.23.4",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

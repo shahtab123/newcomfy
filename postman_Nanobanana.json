@@ -1,0 +1,213 @@
+        {
+        "input": {
+            "workflow": {
+            "2": {
+                "inputs": {
+                "image": "base_image.png"
+                },
+                "class_type": "LoadImage",
+                "_meta": {
+                "title": "Load Image"
+                }
+            },
+            "24": {
+                "inputs": {
+                "image": "reference_image.png"
+                },
+                "class_type": "LoadImage",
+                "_meta": {
+                "title": "Reference Image"
+                }
+            },
+            "9": {
+                "inputs": {
+                "model_name": "bbox/face_yolov8m.pt"
+                },
+                "class_type": "UltralyticsDetectorProvider",
+                "_meta": {
+                "title": "UltralyticsDetectorProvider"
+                }
+            },
+            "10": {
+                "inputs": {
+                "threshold": 0.3,
+                "dilation": 20,
+                "crop_factor": 1,
+                "drop_size": 10,
+                "labels": "face",
+                "bbox_detector": [
+                    "9",
+                    0
+                ],
+                "image": [
+                    "2",
+                    0
+                ]
+                },
+                "class_type": "BboxDetectorSEGS",
+                "_meta": {
+                "title": "BBOX Detector (SEGS)"
+                }
+            },
+            "11": {
+                "inputs": {
+                "segs": [
+                    "10",
+                    0
+                ]
+                },
+                "class_type": "SegsToCombinedMask",
+                "_meta": {
+                "title": "SEGS to MASK (combined)"
+                }
+            },
+            "12": {
+                "inputs": {
+                "cut_type": "mask",
+                "output_size": "mask_size",
+                "padding": 40,
+                "min_width": 0,
+                "min_height": 0,
+                "output_alpha": false,
+                "images": [
+                    "2",
+                    0
+                ],
+                "mask": [
+                    "11",
+                    0
+                ]
+                },
+                "class_type": "D2 Cut By Mask",
+                "_meta": {
+                "title": "D2 Cut By Mask"
+                }
+            },
+            "15": {
+                "inputs": {
+                "model_name": "RealESRGAN_x2.pth"
+                },
+                "class_type": "UpscaleModelLoader",
+                "_meta": {
+                "title": "Load Upscale Model"
+                }
+            },
+            "14": {
+                "inputs": {
+                "upscale_model": [
+                    "15",
+                    0
+                ],
+                "image": [
+                    "12",
+                    0
+                ]
+                },
+                "class_type": "ImageUpscaleWithModel",
+                "_meta": {
+                "title": "Upscale Image (using Model)"
+                }
+            },
+            "38": {
+                "inputs": {
+                "prompt": "Use only the person without changing any facial features or expression and create: The scene is a cinematic, artistic portrait surrounded by vibrant flowers (red, orange, white, blue, and purple) with a dreamy, softly lit atmosphere. Mist and light beams flow in the background, creating depth and a surreal, painterly mood. The subject is standing confidently, well-lit, with natural elegance. Clothing should appear stylish, well-fitted, and refined, adapted naturally to the person's gender. Keep the overall tone artistic, vibrant, and polished with a slightly ethereal look. Ensure the generated person appears slimmer and more fit than default while maintaining realism. Keep the facial expression as it is and dont distort face or facial features in any way. Original face should be as it is",
+                "model": "gemini-2.5-flash-image-preview",
+                "api_key": "AIzaSyAl90nDTeff8CBhyeXA5zdSk9AADOezbGk",
+                "proxy": "",
+                "operation": "None",
+                "quality": "high",
+                "aspect_ratio": "4:5 ▯",
+                "character_consistency": false,
+                "temperature": -0.05,
+                "seed": 1507917843,
+                "image_to_edit": [
+                    "2",
+                    0
+                ]
+                },
+                "class_type": "Nano_Banana",
+                "_meta": {
+                "title": "Nano Banana"
+                }
+            },
+            "39": {
+                "inputs": {
+                "upscale_model": [
+                    "40",
+                    0
+                ],
+                "image": [
+                    "38",
+                    0
+                ]
+                },
+                "class_type": "ImageUpscaleWithModel",
+                "_meta": {
+                "title": "Upscale Image (using Model)"
+                }
+            },
+            "40": {
+                "inputs": {
+                "model_name": "RealESRGAN_x2.pth"
+                },
+                "class_type": "UpscaleModelLoader",
+                "_meta": {
+                "title": "Load Upscale Model"
+                }
+            },
+            "33": {
+                "inputs": {
+                "move_watermark": false,
+                "move_watermark_step": 10,
+                "watermark_text": "",
+                "font": "assets/fonts/DMSans-VariableFont_opsz,wght.ttf",
+                "font_size": 2,
+                "logo_scale_percentage": 10,
+                "x_padding": 0,
+                "y_padding": 0,
+                "rotation": 0,
+                "opacity": 0,
+                "image": [
+                    "39",
+                    0
+                ],
+                "logo_image": [
+                    "24",
+                    0
+                ],
+                "mask": [
+                    "24",
+                    1
+                ]
+                },
+                "class_type": "KimaraAIWatermarker",
+                "_meta": {
+                "title": "Kimara.ai Advanced Watermarker"
+                }
+            },
+            "32": {
+                "inputs": {
+                "filename_prefix": "ai_photo_booth",
+                "images": [
+                    "33",
+                    0
+                ]
+                },
+                "class_type": "Save Image With Callback",
+                "_meta": {
+                "title": "Save Image With Callback"
+                }
+            }
+            },
+            "images": [
+            {
+                "name": "base_image.png",
+                "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            },
+            {
+                "name": "reference_image.png",
+                "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            }
+            ]
+        }
+        }
